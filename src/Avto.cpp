@@ -12,7 +12,7 @@ namespace av
 
     bool Avto::Setup()
     {
-        if (!m_texture.loadFromFile("Avto.png"))
+        if (!m_texture.loadFromFile("Textures/Avto.png"))
         {
             std::cout << "Error with avto texture!!!" << std::endl;
             return false;
@@ -21,6 +21,8 @@ namespace av
         m_avto->setTexture(m_texture);
         m_avto->setOrigin(m_a / 2, m_a / 2);
         m_avto->setPosition(m_x, m_y);
+
+        return true;
     }
 
     int Avto::Get_x()
@@ -31,6 +33,7 @@ namespace av
     void Avto::Set_x(int x)
     {
         m_x = x;
+        m_avto->setPosition(m_x, m_y);
     }
 
     int Avto::Get_y()
@@ -47,27 +50,27 @@ namespace av
     {
         if (y == -1)
         {
-            m_y -= 15;
+            m_y += 25*y;
             m_avto->setPosition(m_x, m_y);
         }
         else if (y == 1)
         {
-            m_y += 15;
+            m_y += 25*y;
             m_avto->setPosition(m_x, m_y);
         }
         else if (x == 1)
         {
-            m_x += 15;
+            m_x += 25*x;
             m_avto->setPosition(m_x, m_y);
         }
         else if (x == -1)
         {
-            m_x -= 15;
+            m_x += 25*x;
             m_avto->setPosition(m_x, m_y);
         }
         else if (y == -2)
         {
-            m_y -= 20;
+            m_y -= 30;
             m_avto->setPosition(m_x, m_y);
         }
     }
@@ -82,5 +85,4 @@ namespace av
         if (m_avto != nullptr)
             delete m_avto;
     }
-
 }

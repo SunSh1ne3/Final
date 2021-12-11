@@ -25,7 +25,7 @@ namespace av
         ~Avto();
 
     private:
-        float m_x, m_y;
+        int m_x, m_y;
         float m_a;
         sf::Texture m_texture;
         sf::Sprite* m_avto = nullptr;

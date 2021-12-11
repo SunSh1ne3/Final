@@ -13,11 +13,15 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
 add_definitions(-DSFML_STATIC)		 # дефайны
 
+include_directories("inc/")
 include_directories("ext/SFML/include/")	# добавляем директории
-include_directories("/")
 link_directories("ext/SFML/lib/")	
 
-add_executable("${PROJECT_NAME}" main.cpp Avto.cpp Avto.hpp )
+add_executable("${PROJECT_NAME}" main.cpp 
+						src/Avto.cpp 
+						inc/Avto.hpp 
+						src/cars.cpp
+						inc/cars.hpp)
 											
 target_link_libraries("${PROJECT_NAME}" sfml-graphics-s-d
 						  sfml-window-s-d
@@ -33,5 +37,4 @@ target_link_libraries("${PROJECT_NAME}" sfml-graphics-s-d
 						  vorbisfile
 						  vorbis
 						  ogg)
-file(COPY "doroga.png" DESTINATION "/")
-file(COPY "Avto.png" DESTINATION "/")
+file(COPY "Textures" DESTINATION "/")
