@@ -35,7 +35,7 @@ int main()
         return false;
     }
     sf::Sprite game_over(gameover);
-    game_over.setPosition(300,300);
+    game_over.setPosition(180,300);
 
     sf::Font font;
     if (!font.loadFromFile("fonts/palai.ttf"))
@@ -49,14 +49,6 @@ int main()
     text.setCharacterSize(36);
     text.setFillColor(sf::Color::White);
 
-    /*sf::Text game_over;
-    text.setFont(font);
-    text.setCharacterSize(48);
-    text.setFillColor(sf::Color::White);
-    sf::Vector2f centerPos = sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2);
-    game_over.setPosition(centerPos.x - game_over.getGlobalBounds().width / 2, centerPos.y - game_over.getGlobalBounds().height / 2);
-    //text.setPosition(centerPos.x - text.getGlobalBounds().width / 2, centerPos.y - text.getGlobalBounds().height / 2);*/
-
     //main avto
     Avto* avto = nullptr;
     avto=new Avto(x0 / 2, y0 - 2 * a, a);
@@ -66,8 +58,6 @@ int main()
         window.close();
         return -1;
     }
-
-
 
     //cars
     std::vector<Cars*> cars;
@@ -80,8 +70,7 @@ int main()
         {
             return -1;
         }
-    }
-       
+    }     
 
     //window open
     while (window.isOpen())
@@ -122,12 +111,11 @@ int main()
 
             if ((abs(Y-y)<=237) && (abs(x-X)<=105) )
             {    
-                //window.clear(sf::Color::Black);
-                window.draw(game_over);  
-                //window.draw(*avto->Get());
-                  
+                Sleep(500);
+                window.draw(game_over);
+
                 window.display();
-                Sleep(4000);
+                Sleep(2000);
                 window.close();
             }  
         }
