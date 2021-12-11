@@ -46,8 +46,12 @@ int main()
 
     sf::Text text;
     text.setFont(font);
-    text.setCharacterSize(36);
+    text.setCharacterSize(48);
     text.setFillColor(sf::Color::White);
+
+
+
+    sf::Vector2f centerPos = sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2);
 
     //main avto
     Avto* avto = nullptr;
@@ -111,9 +115,11 @@ int main()
 
             if ((abs(Y-y)<=237) && (abs(x-X)<=105) )
             {    
+                text.setPosition(centerPos.x - text.getGlobalBounds().width / 2, centerPos.y - text.getGlobalBounds().height / 2);
+                text.setString(std::string("Score ") + std::to_string(score));
                 Sleep(500);
+                window.draw(text);
                 window.draw(game_over);
-
                 window.display();
                 Sleep(2000);
                 window.close();
@@ -140,8 +146,7 @@ int main()
                 return -1;
             }
         }
-         
-        
+                 
         window.draw(background);
         for (const auto& Cars : cars)
                     window.draw(*Cars->Get());
@@ -158,7 +163,7 @@ int main()
         } 
         
         text.setString(std::string("Score ") + std::to_string(score));
-                window.draw(text);
+        window.draw(text);
 
         window.display();
         
