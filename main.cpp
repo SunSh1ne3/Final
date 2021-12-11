@@ -6,6 +6,8 @@
 #include <Avto.hpp>
 #include <Cars.hpp>
 #include <windows.h>
+#include <dos.h>
+#include <string>
 
 using namespace cr;
 using namespace av;
@@ -13,6 +15,7 @@ using namespace std::chrono_literals;
 
 int main()
 {
+    int v = 30 + 25;
     float a = 260;
     float a1 = 188;
     float b1 = 250;
@@ -49,8 +52,6 @@ int main()
     text.setCharacterSize(48);
     text.setFillColor(sf::Color::White);
 
-
-
     sf::Vector2f centerPos = sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2);
 
     //main avto
@@ -66,7 +67,7 @@ int main()
     //cars
     std::vector<Cars*> cars;
     for (int i =a1*0.9; i <= x0-a1/2; i += a1*1.8)
-        cars.push_back(new Cars(i, 0, a1, b1, rand() % 20+15));
+        cars.push_back(new Cars(i, 0, a1, b1, rand() %20+15));
 
     for (const auto& Cars : cars)
     {
@@ -136,7 +137,7 @@ int main()
                 {
                     score++;
                     Cars->Set_y(-b1/2);
-                    Cars->setVelocity(rand() % 20+10);
+                    Cars->setVelocity(rand() % v);
                 }                                   
             }
             if (!Cars->Setup())
