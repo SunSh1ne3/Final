@@ -23,9 +23,10 @@ namespace cr
         void setVelocity(float velocity);
 
         sf::Sprite* Get();
-
+       
         ~Cars();
 
+        
     private:
         int m_x, m_y;
         float m_a, m_b;

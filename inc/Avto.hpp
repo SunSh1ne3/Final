@@ -10,6 +10,8 @@ namespace av
 
         bool Setup();
         
+        float Get_A();
+        
         int Get_x();
        
         void Set_x(int x);
@@ -24,6 +26,7 @@ namespace av
 
         ~Avto();
 
+        
     private:
         int m_x, m_y;
         float m_a;
