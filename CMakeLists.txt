@@ -17,11 +17,11 @@ include_directories("inc/")
 include_directories("ext/SFML/include/")	# добавляем директории
 link_directories("ext/SFML/lib/")	
 
-add_executable("${PROJECT_NAME}" main.cpp 
-						src/Avto.cpp 
+add_executable("${PROJECT_NAME}" main.cpp  
 						inc/Avto.hpp 
-						src/cars.cpp
-						inc/cars.hpp)
+						inc/cars.hpp
+						src/Avto.cpp
+						src/cars.cpp)
 											
 target_link_libraries("${PROJECT_NAME}" sfml-graphics-s-d
 						  sfml-window-s-d
