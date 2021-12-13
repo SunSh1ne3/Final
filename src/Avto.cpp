@@ -68,7 +68,7 @@ namespace av
             m_x += 25*x;
             m_avto->setPosition(m_x, m_y);
         }
-        else if (y == -2)
+        else if ((y == -2))
         {
             m_y -= 30;
             m_avto->setPosition(m_x, m_y);
