@@ -10,8 +10,6 @@ namespace av
 
         bool Setup();
         
-        float Get_A();
-        
         int Get_x();
        
         void Set_x(int x);

@@ -10,7 +10,6 @@ namespace cr
             m_a = a;
             m_b = b;
             m_velocity = velocity;
-            //m_index = index;
         }
 
         bool Cars::Setup()

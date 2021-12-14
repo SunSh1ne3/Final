@@ -15,6 +15,7 @@ using namespace std::chrono_literals;
 
 int main()
 {
+    srand(0);
     float a = 260;
     float a1 = 188;
     float b1 = 250;
@@ -54,6 +55,13 @@ int main()
     text.setCharacterSize(48);
     text.setFillColor(sf::Color::White);
 
+    sf::Text Win;
+    Win.setFont(font);
+    Win.setCharacterSize(86);
+    Win.setFillColor(sf::Color::Green);
+    Win.setPosition(180,300);
+    text.setString(std::string("You Win!"));
+
     sf::Vector2f centerPos = sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2);
 
     //main avto
@@ -69,8 +77,7 @@ int main()
     std::vector<Cars*> cars;
     for (int i = a1 * 0.9; i <= x0 - a1 / 2; i += a1 * 1.8)
     {
-        cars.push_back(new Cars(i, 0, a1, b1, rand() %15+10));
-       // index++;
+        cars.push_back(new Cars(i, 0, a1, b1, rand() % 15 + 10));
     }
         
 
@@ -100,9 +107,9 @@ int main()
         {
             avto->Set_x(a/2);
         }
-        if (avto->Get_y() > y0 - 260)
+        if (avto->Get_y() >= y0 - a)
         {
-            avto->Set_y(y0 - 260 );
+            avto->Set_y(y0 - a );
         }
         if (avto->Get_y() <= a/1.5)
         {
@@ -110,7 +117,7 @@ int main()
         }
 
         //столкновение
-        for (const auto& Cars : cars)
+        /*for (const auto& Cars : cars)
         {
             int X = avto->Get_x();
             int Y = avto->Get_y();
@@ -118,7 +125,7 @@ int main()
             int x = Cars->Get_x();
             int y = Cars->Get_y();
 
-            if ((abs(Y-y)<=238) && (abs(x-X)<=105) )
+            if ((abs(Y-y)<=240) && (abs(x-X)<=106) )
             {    
                 text.setPosition(centerPos.x - text.getGlobalBounds().width / 2, centerPos.y - text.getGlobalBounds().height / 2);
                 text.setString(std::string("Score ") + std::to_string(score));
@@ -129,7 +136,8 @@ int main()
                 Sleep(2000);
                 window.close();
             }  
-        }
+
+        }*/
 
         //перемещение врага с конца в начало + очки
         for (int i=0;i<3;i++)
@@ -141,9 +149,29 @@ int main()
                 {
                     score++;
                     cars[i]->Set_y(-b1 / 2);
-                    cars[i]->Set_x(((i+1)*1.2*a1  + rand() % (i+1)*p - a1));
-                    cars[i]->setVelocity(rand() % 35 + 30);
-                }                                   
+                    cars[i]->Set_x(a1/2+i*p+rand() % p - a1/2);
+                        
+                    if (score >= 20)
+                    {
+                        cars[i]->setVelocity(rand() % 75 + 70);
+                    }
+                    else if(score<20)
+                    {
+                        cars[i]->setVelocity(rand() % 20+15);
+                    }       
+                    if(score>=100)
+                    {
+                        text.setPosition(centerPos.x - text.getGlobalBounds().width / 2, centerPos.y - text.getGlobalBounds().height / 2);
+                        text.setString(std::string("Score ") + std::to_string(score));
+                        text.setString(std::string("You Win!"));
+                        Sleep(500);
+                        window.draw(text);
+                        window.draw(Win);
+                        window.display();
+                        Sleep(3000);
+                        window.close();
+                    }
+                }                                                      
             }
             if (!cars[i]->Setup())
             {
