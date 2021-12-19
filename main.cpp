@@ -15,9 +15,10 @@ using namespace std::chrono_literals;
 
 int main()
 {
-    srand(0);
-    float a = 260;
-    float a1 = 188;
+    //srand(0);
+    int a = 280;
+    int b = 243;
+    int a1 = 153;
     float b1 = 250;
     int score = 0;
     sf::Texture texture;
@@ -33,7 +34,6 @@ int main()
     sf::RenderWindow window(sf::VideoMode(x0, y0), "Final!");
 
     int p = (x0 - a1) / 3;
-    std::cout << p;
 
     if (!gameover.loadFromFile("Textures/gameover.png"))
     {
@@ -66,7 +66,7 @@ int main()
 
     //main avto
     Avto* avto = nullptr;
-    avto=new Avto(x0 / 2, y0 - a, a);
+    avto=new Avto(x0 / 2, y0 - a, a, b);
     if (!avto->Setup())
     {
         delete avto;
@@ -75,7 +75,7 @@ int main()
     }
     //cars
     std::vector<Cars*> cars;
-    for (int i = a1 * 0.9; i <= x0 - a1 / 2; i += a1 * 1.8)
+    for (int i = a1; i <= x0 - a1 / 2; i += 2.3*a1)
     {
         cars.push_back(new Cars(i, 0, a1, b1, rand() % 15 + 10));
     }
@@ -87,7 +87,8 @@ int main()
         {
             return -1;
         }
-    }     
+    }   
+    srand(0);
     //window open
     while (window.isOpen())
     {
@@ -115,7 +116,7 @@ int main()
         {
             avto->Set_y(a/1.5);
         }
-
+        /*
         //столкновение
         for (const auto& Cars : cars)
         {
@@ -125,8 +126,8 @@ int main()
             int x = Cars->Get_x();
             int y = Cars->Get_y();
 
-            if ((abs(Y-y)<=240) && (abs(x-X)<=106) )
-            {    
+            if ((abs(Y-y)<=246) && (abs(x-X)<=100))
+            {
                 text.setPosition(centerPos.x - text.getGlobalBounds().width / 2, centerPos.y - text.getGlobalBounds().height / 2);
                 text.setString(std::string("Score ") + std::to_string(score));
                 Sleep(500);
@@ -137,7 +138,7 @@ int main()
                 window.close();
             }  
 
-        }
+        }*/
 
         //перемещение врага с конца в начало + очки
         for (int i=0;i<3;i++)
@@ -145,15 +146,16 @@ int main()
             if (cars[i] != nullptr)
             {
                 cars[i]->Move();
-                if (cars[i]->Get_y() >= y0 + a1 / 2)
+                if (cars[i]->Get_y() >= y0 + a1)
                 {
                     score++;
                     cars[i]->Set_y(-b1 / 2);
-                    cars[i]->Set_x(a1/2+i*p+rand() % p - a1/2);
+                    //cars[i]->Set_x(a1/2+rand() % a1/2 + i*p+a1/1.5);
+                    cars[i]->Set_x(15+i*p + rand() % (p-a1/2)+a1/2);
                         
                     if (score >= 20)
                     {
-                        cars[i]->setVelocity(rand() % 75 + 70);
+                        cars[i]->setVelocity(rand() % 35 + 30);
                     }
                     else if(score<20)
                     {
@@ -163,10 +165,10 @@ int main()
                     {
                         text.setPosition(centerPos.x - text.getGlobalBounds().width / 2, centerPos.y - text.getGlobalBounds().height / 2);
                         text.setString(std::string("Score ") + std::to_string(score));
-                        text.setString(std::string("You Win!"));
+
                         Sleep(500);
-                        window.draw(text);
                         window.draw(Win);
+                        window.draw(text);
                         window.display();
                         Sleep(3000);
                         window.close();
@@ -213,6 +215,5 @@ int main()
     {
         delete avto;
     }
-
     return 0;
 }

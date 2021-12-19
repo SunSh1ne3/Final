@@ -6,7 +6,7 @@ namespace av
     class Avto
     {
     public:
-        Avto(int x, int y, float a);
+        Avto(int x, int y, int a, int b);
 
         bool Setup();
         
@@ -27,7 +27,7 @@ namespace av
         
     private:
         int m_x, m_y;
-        float m_a;
+        int m_a, m_b;
         sf::Texture m_texture;
         sf::Sprite* m_avto = nullptr;
 

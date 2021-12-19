@@ -3,11 +3,12 @@
 
 namespace av
 {
-    Avto::Avto(int x, int y, float a)
+    Avto::Avto(int x, int y, int a, int b)
     {
         m_x = x;
         m_y = y;
         m_a = a;
+        m_b = b;
     }
 
     bool Avto::Setup()
@@ -19,7 +20,7 @@ namespace av
         }
         m_avto = new sf::Sprite();
         m_avto->setTexture(m_texture);
-        m_avto->setOrigin(m_a / 2, m_a / 2);
+        m_avto->setOrigin(m_a / 2, m_b / 2);
         m_avto->setPosition(m_x, m_y);
 
         return true;
