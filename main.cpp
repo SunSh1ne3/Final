@@ -117,7 +117,7 @@ int main()
         }
 
         //столкновение
-        /*for (const auto& Cars : cars)
+        for (const auto& Cars : cars)
         {
             int X = avto->Get_x();
             int Y = avto->Get_y();
@@ -137,7 +137,7 @@ int main()
                 window.close();
             }  
 
-        }*/
+        }
 
         //перемещение врага с конца в начало + очки
         for (int i=0;i<3;i++)
