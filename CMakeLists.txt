@@ -20,8 +20,10 @@ link_directories("ext/SFML/lib/")
 add_executable("${PROJECT_NAME}" main.cpp  
 						inc/Avto.hpp 
 						inc/cars.hpp
+						inc/functions.hpp
 						src/Avto.cpp
-						src/cars.cpp)
+						src/cars.cpp
+						src/funtions.cpp)
 											
 target_link_libraries("${PROJECT_NAME}" sfml-graphics-s-d
 						  sfml-window-s-d

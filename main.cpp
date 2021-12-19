@@ -15,7 +15,7 @@ using namespace std::chrono_literals;
 
 int main()
 {
-    //srand(0);
+    srand(time(NULL));
     int a = 280;
     int b = 243;
     int a1 = 153;
@@ -57,10 +57,10 @@ int main()
 
     sf::Text Win;
     Win.setFont(font);
-    Win.setCharacterSize(86);
+    Win.setCharacterSize(90);
     Win.setFillColor(sf::Color::Green);
-    Win.setPosition(180,300);
-    text.setString(std::string("You Win!"));
+    Win.setPosition(360,320);
+    Win.setString(std::string("You Win!"));
 
     sf::Vector2f centerPos = sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2);
 
@@ -88,7 +88,7 @@ int main()
             return -1;
         }
     }   
-    srand(0);
+
     //window open
     while (window.isOpen())
     {
@@ -116,17 +116,17 @@ int main()
         {
             avto->Set_y(a/1.5);
         }
-        /*
+        
         //столкновение
         for (const auto& Cars : cars)
         {
             int X = avto->Get_x();
             int Y = avto->Get_y();
-     
+
             int x = Cars->Get_x();
             int y = Cars->Get_y();
 
-            if ((abs(Y-y)<=246) && (abs(x-X)<=100))
+            if ((abs(Y - y) <= 246) && (abs(x - X) <= 100))
             {
                 text.setPosition(centerPos.x - text.getGlobalBounds().width / 2, centerPos.y - text.getGlobalBounds().height / 2);
                 text.setString(std::string("Score ") + std::to_string(score));
@@ -136,10 +136,10 @@ int main()
                 window.display();
                 Sleep(2000);
                 window.close();
-            }  
+            }
 
-        }*/
-
+        }
+        
         //перемещение врага с конца в начало + очки
         for (int i=0;i<3;i++)
         {
@@ -150,12 +150,11 @@ int main()
                 {
                     score++;
                     cars[i]->Set_y(-b1 / 2);
-                    //cars[i]->Set_x(a1/2+rand() % a1/2 + i*p+a1/1.5);
-                    cars[i]->Set_x(15+i*p + rand() % (p-a1/2)+a1/2);
+                    cars[i]->Set_x(50+i*p + (rand() % (p-a1)+a1/2));
                         
                     if (score >= 20)
                     {
-                        cars[i]->setVelocity(rand() % 35 + 30);
+                        cars[i]->setVelocity(rand() % 30 + 25);
                     }
                     else if(score<20)
                     {
@@ -165,7 +164,6 @@ int main()
                     {
                         text.setPosition(centerPos.x - text.getGlobalBounds().width / 2, centerPos.y - text.getGlobalBounds().height / 2);
                         text.setString(std::string("Score ") + std::to_string(score));
-
                         Sleep(500);
                         window.draw(Win);
                         window.draw(text);
