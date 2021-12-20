@@ -33,11 +33,14 @@ namespace fc
                 {
                     window.close();
                     isMenu = false;
+                   
+                    
                 }
 
                 if (menuNum == 2)
                 {
                     isMenu = false;
+                    //window.close();
                 }
 
             }

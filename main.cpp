@@ -19,6 +19,7 @@ using namespace std::chrono_literals;
 
 int main()
 {
+   
     srand(time(NULL));
     int a = 280;
     int b = 243;
@@ -36,7 +37,7 @@ int main()
 
     float x0 = 1000, y0 = 1000;
     sf::RenderWindow window(sf::VideoMode(x0, y0), "Final!");
-
+     //game:
     sf::RenderWindow window1(sf::VideoMode(x0, y0), "Menu");
     fc::menu(window1);//вызов меню
 
@@ -157,7 +158,7 @@ int main()
                 {
                     score++;
                     cars[i]->Set_y(-b1 / 2);
-                    cars[i]->Set_x(50+i*p + (rand() % (p-a1)+a1/2));
+                    cars[i]->Set_x(50+i*p + (rand() % p+a1/2));
                         
                     if (score >= 20)
                     {
@@ -177,6 +178,8 @@ int main()
                         window.display();
                         Sleep(3000);
                         window.close();
+                        //fc::menu(window1);
+                        //goto game;
                     }
                 }                                                      
             }
