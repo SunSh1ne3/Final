@@ -5,13 +5,17 @@
 #include <iostream>
 #include <Avto.hpp>
 #include <Cars.hpp>
+#include <menu.hpp>
 #include <windows.h>
 #include <dos.h>
 #include <string>
+#include <game.hpp>
 
 using namespace cr;
 using namespace av;
 using namespace std::chrono_literals;
+    
+
 
 int main()
 {
@@ -32,6 +36,9 @@ int main()
 
     float x0 = 1000, y0 = 1000;
     sf::RenderWindow window(sf::VideoMode(x0, y0), "Final!");
+
+    sf::RenderWindow window1(sf::VideoMode(x0, y0), "Menu");
+    fc::menu(window1);//вызов меню
 
     int p = (x0 - a1) / 3;
 
