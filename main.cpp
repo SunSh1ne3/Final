@@ -19,7 +19,7 @@ using namespace std::chrono_literals;
 
 int main()
 {
-   
+    game:
     srand(time(NULL));
     int a = 280;
     int b = 243;
@@ -37,8 +37,10 @@ int main()
 
     float x0 = 1000, y0 = 1000;
     sf::RenderWindow window(sf::VideoMode(x0, y0), "Final!");
-     //game:
+
+    
     sf::RenderWindow window1(sf::VideoMode(x0, y0), "Menu");
+    window1.create(sf::VideoMode(x0, y0), "Menu");
     fc::menu(window1);//вызов меню
 
     int p = (x0 - a1) / 3;
@@ -96,7 +98,7 @@ int main()
             return -1;
         }
     }   
-
+    
     //window open
     while (window.isOpen())
     {
@@ -124,6 +126,10 @@ int main()
         {
             avto->Set_y(a/1.5);
         }
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab))
+                {
+                    goto game;
+                }
         
         //столкновение
         for (const auto& Cars : cars)
@@ -142,7 +148,12 @@ int main()
                 window.draw(text);
                 window.draw(game_over);
                 window.display();
-                Sleep(2000);
+                //Sleep(3000);
+                
+                //window1.create(sf::VideoMode(x0,y0), "Menu");
+                //fc::menu(window1);
+                Sleep(3000);
+  
                 window.close();
             }
 
