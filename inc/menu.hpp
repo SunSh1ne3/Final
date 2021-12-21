@@ -4,4 +4,5 @@
 namespace fc
 {
 	void menu(sf::RenderWindow& window);	
+	bool ReMenu(sf::RenderWindow& window, int& score);
 }
