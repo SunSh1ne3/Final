@@ -3,6 +3,7 @@
 
 namespace fc
 {
-	void menu(sf::RenderWindow& window);	
+	bool menu(sf::RenderWindow& window);	
 	bool ReMenu(sf::RenderWindow& window, int& score);
+	bool WinMenu(sf::RenderWindow& window);
 }
