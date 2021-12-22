@@ -35,17 +35,18 @@ namespace fc
             if (Mouse::isButtonPressed(Mouse::Left))
             {
                 if (menuNum == 1)
-                {                                        
-                    isMenu = false;
+                {                                      
+                    isMenu = false;     
                     return true;
-                   
                 }
 
                 if (menuNum == 2)
                 {                   
-                    isMenu = false;    
-                    return false;                 
-                    window.close();                   
+                      
+                    return false;  
+                    isMenu = false;  
+                    window.close();                
+                                      
                 }
             }
 
@@ -104,17 +105,16 @@ namespace fc
             if (Mouse::isButtonPressed(Mouse::Left))
             {
                 if (menuNum == 1)
-                {
-                    isMenu = false; 
+                {                    
                     return true;
+                    isMenu = false;
                 }
 
                 if (menuNum == 2)
                 {
-                    
-                    isMenu = false;
-                    return false;
+                    return false;                   
                     window.close();
+                    isMenu = false; 
                 }
             }
             

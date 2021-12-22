@@ -1,5 +1,4 @@
 ﻿#include <game.hpp>
-
 int main()
 {
     gm::ReGame();

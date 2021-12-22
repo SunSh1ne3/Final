@@ -40,16 +40,11 @@ namespace gm
         sf::RenderWindow window(sf::VideoMode(x0, y0), "Final!");
 
         fc::menu(window);       
-        if (fc::menu(window)==true)
+        if (!fc::menu(window))
         {
-            return true;
+            return false;
         }
-        else 
-        { 
-            return false; 
-        }
-
-        
+  
 
         int p = (x0 - a1) / 3;
 
@@ -72,6 +67,7 @@ namespace gm
         text.setFont(font);
         text.setCharacterSize(48);
         text.setFillColor(sf::Color::White);
+        text.setString(std::string("Score ") + std::to_string(score));
 
         //main avto
         Avto* avto = nullptr;
@@ -197,14 +193,13 @@ namespace gm
             if (avto->Get_y() <= b / 1.5)
             {
                 avto->Set_y(b / 1.5);
-            }
-
-            text.setString(std::string("Score ") + std::to_string(score));
+            } 
+            
             window.draw(text);
+            
+            window.clear();
 
             window.display();
-
-            window.clear();
 
             std::this_thread::sleep_for(0ms);
 
