@@ -36,8 +36,18 @@ namespace gm
         }
         sf::Sprite background(texture);
 
+        
+
         float x0 = 1000, y0 = 1000;
-        sf::RenderWindow window(sf::VideoMode(x0, y0), "Final!");
+        sf::RenderWindow window(sf::VideoMode(x0, y0), "Race");
+        int p = (x0 - a1) / 3;
+
+        sf::Image icon;
+        if (!icon.loadFromFile("Textures/icon.png"))
+        {
+            return false;
+        }
+        window.setIcon(32, 24, icon.getPixelsPtr());
 
         fc::menu(window);       
         if (!fc::menu(window))
@@ -45,8 +55,7 @@ namespace gm
             return false;
         }
   
-
-        int p = (x0 - a1) / 3;
+       
 
         if (!gameover.loadFromFile("Textures/gameover.png"))
         {
@@ -67,8 +76,7 @@ namespace gm
         text.setFont(font);
         text.setCharacterSize(48);
         text.setFillColor(sf::Color::White);
-        text.setString(std::string("Score ") + std::to_string(score));
-
+        
         //main avto
         Avto* avto = nullptr;
         avto = new Avto(x0 / 2, y0 - a, a, b);
@@ -84,7 +92,6 @@ namespace gm
         {
             cars.push_back(new Cars(i, 0, a1, b1, rand() % 15 + 10));
         }
-
 
         for (const auto& Cars : cars)
         {
@@ -113,13 +120,11 @@ namespace gm
                 int x = Cars->Get_x();
                 int y = Cars->Get_y();
 
-                if ((abs(Y - y) <= 246) && (abs(x - X) <= 100))
+                if ((abs(Y - y) <= 246) && (abs(x - X) <= 97))
                 {
                     Cars->setVelocity(0);
-
                     L = 1;
                 }
-
             }
             
             //перемещение врага с конца в начало + очки
@@ -132,7 +137,7 @@ namespace gm
                     {
                         score++;
                         cars[i]->Set_y(-b1 / 2);
-                        cars[i]->Set_x(20 + i * p + (rand() % p + a1 / 2));
+                        cars[i]->Set_x((a1/4 + i * p )+(rand() % p + a1 / 4));
 
                         if (score < 20)
                         {
@@ -140,9 +145,13 @@ namespace gm
                         }
                         else if (score >= 20)
                         {
-                            cars[i]->setVelocity(rand() % 30 + 25);
+                            cars[i]->setVelocity(rand() % 25 + 20);
                         }
-                        if (score >= 100)
+                        else if (score >= 50)
+                        {
+                            cars[i]->setVelocity(rand() % 30+25);
+                        }
+                        if (score >= 80)
                         {
                             cars[i]->setVelocity(0);
                             W = 1;
@@ -195,17 +204,18 @@ namespace gm
                 avto->Set_y(b / 1.5);
             } 
             
+            text.setString(std::string("Score ") + std::to_string(score));
             window.draw(text);
-            
-            window.clear();
 
             window.display();
 
-            std::this_thread::sleep_for(0ms);
+            window.clear();
 
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) { return true; }
-            //если эскейп, то выходим из игры
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) { return false; }
+            std::this_thread::sleep_for(40ms);
+
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)) { return true; }//открытие главного меню
+            
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) { return false; }//если Esc, то выходим из игры
 
             if (L == 1)
             {

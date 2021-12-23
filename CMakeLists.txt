@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15) # Проверка версии CMake.
 									 # Если версия установленой программы
 									 # старее указаной, произайдёт аварийный выход.
 
-set(PROJECT_NAME Final)				 # имя проекта		 
+set(PROJECT_NAME Race)				 # имя проекта		 
 project("${PROJECT_NAME}")
 
 
@@ -25,7 +25,9 @@ add_executable("${PROJECT_NAME}" main.cpp
 						src/Avto.cpp
 						src/cars.cpp
 						src/menu.cpp
-						src/game.cpp)
+						src/game.cpp
+						Textures/App.rc
+)
 											
 target_link_libraries("${PROJECT_NAME}" sfml-graphics-s-d
 						  sfml-window-s-d

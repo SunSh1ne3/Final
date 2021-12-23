@@ -42,11 +42,13 @@ namespace cr
         {
             return m_y;
         }
+
         void Cars::Set_y(int y)
         {
             m_y = y;
             m_cars->setPosition(m_x, m_y);
         }
+
         void Cars::Move()
         {
             m_y += m_velocity;

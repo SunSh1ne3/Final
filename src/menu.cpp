@@ -1,24 +1,32 @@
 #include <menu.hpp>
 #include<SFML\Graphics.hpp>
-
+using namespace sf;
 namespace fc
 {
-    using namespace sf;
+    
     bool menu(RenderWindow& window)
     {
-        Texture NG, Ex, BG;
+        Texture NG, Ex, BG, AB,abot;
         NG.loadFromFile("Textures/NewGame.png");
         Ex.loadFromFile("Textures/Exit.png");
         BG.loadFromFile("Textures/fon.jpg");
+        AB.loadFromFile("Textures/About.png");
+        abot.loadFromFile("Textures/abot.png");
 
         Sprite NewGame(NG);
         NewGame.setPosition(420, 250);
 
+        Sprite About(AB);
+        About.setPosition(450, 310);
+
         Sprite Exit(Ex);
-        Exit.setPosition(415, 310);
+        Exit.setPosition(415, 370);
 
         Sprite Background(BG);
         Background.setPosition(0, 0);
+
+        Sprite about(abot);
+
 
         bool isMenu = true;
         int menuNum = 0;
@@ -26,21 +34,29 @@ namespace fc
         {
             NewGame.setColor(Color::Black);
             Exit.setColor(Color::Black);
+            About.setColor(Color::Black);
             menuNum = 0;
             window.clear(Color::White);
 
             if (IntRect(420, 250, 200, 50).contains(Mouse::getPosition(window))) { NewGame.setColor(Color::Red); menuNum = 1; }
-            if (IntRect(445, 310, 100, 50).contains(Mouse::getPosition(window))) { Exit.setColor(Color::Red); menuNum = 2; }
+            if (IntRect(460, 310, 100, 50).contains(Mouse::getPosition(window))) { About.setColor(Color::Red); menuNum = 2; }
+            if (IntRect(470, 370, 100, 50).contains(Mouse::getPosition(window))) { Exit.setColor(Color::Red); menuNum = 3; }
 
             if (Mouse::isButtonPressed(Mouse::Left))
             {
                 if (menuNum == 1)
                 {                                      
                     isMenu = false;     
-                    return true;
                 }
 
                 if (menuNum == 2)
+                { 
+                    window.draw(about); 
+                    window.display(); 
+                    while (!Keyboard::isKeyPressed(Keyboard::Escape)); 
+                }
+
+                if (menuNum == 3)
                 {                   
                       
                     return false;  
@@ -52,6 +68,7 @@ namespace fc
 
             window.draw(Background);
             window.draw(NewGame);
+            window.draw(About);
             window.draw(Exit);
 
             window.display();
@@ -100,7 +117,7 @@ namespace fc
             window.clear(Color::White);
 
             if (IntRect(430, 350,200,50).contains(Mouse::getPosition(window))) { Restart.setColor(Color::Yellow); menuNum = 1; }
-            if (IntRect(455, 390,100,50).contains(Mouse::getPosition(window))) { Exit.setColor(Color::Yellow); menuNum = 2; }
+            if (IntRect(470, 390,100,50).contains(Mouse::getPosition(window))) { Exit.setColor(Color::Yellow); menuNum = 2; }
 
             if (Mouse::isButtonPressed(Mouse::Left))
             {
@@ -161,7 +178,7 @@ namespace fc
             window.clear(Color::White);
 
             if (IntRect(430, 350, 200, 50).contains(Mouse::getPosition(window))) { Restart.setColor(Color::Yellow); menuNum = 1; }
-            if (IntRect(455, 390, 100, 50).contains(Mouse::getPosition(window))) { Exit.setColor(Color::Yellow); menuNum = 2; }
+            if (IntRect(470, 390, 100, 50).contains(Mouse::getPosition(window))) { Exit.setColor(Color::Yellow); menuNum = 2; }
 
             if (Mouse::isButtonPressed(Mouse::Left))
             {
